@@ -1,0 +1,28 @@
+---
+- name: Install base packages
+  ansible.builtin.dnf:
+    name: "{{ common_base_packages }}"
+    state: present
+    update_cache: true
+
+- name: Set system timezone
+  community.general.timezone:
+    name: "{{ common_timezone }}"
+  notify: Restart cron
+
+- name: Set timezone and hardware clock to UTC
+  community.general.timezone:
+    name: UTC
+    hwclock: UTC
+
+- name: Apply sysctl hardening
+  ansible.builtin.include_tasks: setup_sysctl.yml
+  tags: [sysctl]
+
+- name: Set up Tailscale
+  ansible.builtin.include_tasks: setup_tailscale.yml
+  when: common_tailscale_enabled | bool
+  tags: [tailscale]
+
+- name: Set up sysctl
+  ansible.builtin.include_tasks: setup_sysctl.yml

@@ -1,0 +1,32 @@
+---
+common_base_packages:
+  - git
+  - curl
+  - vim
+
+common_timezone: "Asia/Tokyo"
+
+# Tailscale
+common_tailscale_enabled: false
+# 認証キー。平文で置かず Ansible Vault で上書きすること(空なら接続処理をスキップ)。
+common_tailscale_authkey: ""
+common_tailscale_up_args: ""
+
+# sysctl ハードニング
+common_ping_disabled: false
+
+# TCP keepalive のチューニング
+common_tcp_keepalive:
+  net.ipv4.tcp_keepalive_time: 60
+  net.ipv4.tcp_keepalive_intvl: 10
+  net.ipv4.tcp_keepalive_probes: 6
+
+# TCPの設定を変更
+common_tcp_settings:
+  net.ipv4.tcp_fastopen: 3
+  net.ipv4.tcp_tw_reuse: 1
+  net.ipv4.tcp_syncookies: 1
+  net.ipv4.conf.default.rp_filter: 2
+  net.ipv4.conf.all.rp_filter: 2
+  net.core.default_qdisc: cake
+  net.ipv4.tcp_congestion_control: bbr

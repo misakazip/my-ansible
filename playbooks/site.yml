@@ -1,0 +1,6 @@
+---
+- name: Base setup for all hosts
+  hosts: all
+  gather_facts: true
+  roles:
+    - role: common

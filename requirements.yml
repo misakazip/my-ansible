@@ -1,0 +1,13 @@
+---
+# ansible-galaxy collection install -r requirements.yml
+collections:
+  # ansible-core 2.16 系と互換のある範囲に固定(13.x は 2.17+ を要求するため)
+  - name: community.general
+    version: ">=8.0.0,<11.0.0"
+  - name: ansible.posix
+    version: ">=1.5.0"
+
+# Galaxy 上のロールを使う場合はここに追記:
+# roles:
+#   - name: geerlingguy.docker
+#     version: "7.0.0"

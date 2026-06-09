@@ -1,0 +1,9 @@
+# Ansible
+*.retry
+collections/
+roles/galaxy/
+
+# DO NOT COMMITS THESE FILES
+.vault_pass
+vault_pass.txt
+*.vault

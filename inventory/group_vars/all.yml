@@ -1,0 +1,15 @@
+---
+# 全ホスト共通の変数
+common_base_packages:
+  - git
+  - curl
+  - vim
+  - htop
+
+common_timezone: Asia/Tokyo
+
+# Tailscale
+common_tailscale_enabled: true
+common_tailscale_up_args: "--ssh --accept-routes --advertise-exit-node"
+# 機密値(パスワード・トークン等)は平文で置かず Ansible Vault を使うこと。
+#   ansible-vault create inventory/group_vars/all/vault.yml
