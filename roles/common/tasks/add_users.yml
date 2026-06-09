@@ -1,0 +1,20 @@
+---
+- name: Add users with wheel
+  ansible.builtin.user:
+    name: "{{ item }}"
+    append: true
+    groups: wheel
+    shell: /bin/zsh
+    state: present
+    loop: common_add_user_with_wheel
+    when: common_add_user_with_wheel | length > 0
+
+- name: Add normal users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    append: true
+    groups: wheel
+    shell: /bin/zsh
+    state: present
+    loop: common_add_user
+    when: common_add_user | length > 0

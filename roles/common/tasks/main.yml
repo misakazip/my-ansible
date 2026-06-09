@@ -29,3 +29,6 @@
 
 - name: Disable unused modules
   ansible.builtin.include_tasks: disable_unused_modules.yml
+
+- name: Add users
+  ansible.builtin.include_tasks: add_users.yml
