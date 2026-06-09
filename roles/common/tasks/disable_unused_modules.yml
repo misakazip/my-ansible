@@ -1,0 +1,23 @@
+---
+- name: Blacklist unused kernel modules
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/ansible-blacklist.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      # This file is managed by Ansible
+      # DO NOT EDIT
+      {% for module in common_blacklist_modules %}
+      blacklist {{ module }}
+      install {{ module }} /bin/false
+      {% endfor %}
+  become: true
+
+- name: Unload currently loaded blacklisted modules
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: absent
+  become: true
+  loop: "{{ common_blacklist_modules }}"
+  failed_when: false

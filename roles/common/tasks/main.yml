@@ -26,3 +26,6 @@
 
 - name: Set up sysctl
   ansible.builtin.include_tasks: setup_sysctl.yml
+
+- name: Disable unused modules
+  ansible.builtin.include_tasks: disable_unused_modules.yml

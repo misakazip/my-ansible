@@ -15,6 +15,22 @@ common_tailscale_up_args: ""
 # sysctl ハードニング
 common_ping_disabled: false
 
+# カーネルモジュールのブラックリスト
+common_blacklist_modules:
+  - cramfs
+  - freevxfs
+  - jffs2
+  - hfs
+  - hfsplus
+  - squashfs
+  - udf
+  - dccp
+  - sctp
+  - rds
+  - tipc
+  - firewire-core
+#  - usb-storage
+
 # TCP keepalive のチューニング
 common_tcp_keepalive:
   net.ipv4.tcp_keepalive_time: 60
