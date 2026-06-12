@@ -3,6 +3,9 @@ name: Syntax Check
 
 on: push
 
+permissions:
+  contents: read
+
 jobs:
   syntax-check:
     runs-on: ubuntu-latest
@@ -16,7 +19,8 @@ jobs:
           python-version: "3.12"
 
       - name: Install ansible-core
-        run: pip install ansible-core
+        # requirements.yml が ansible-core 2.16 系前提でコレクションを固定しているため合わせる
+        run: pip install "ansible-core>=2.16,<2.17"
 
       - name: Install Galaxy collections
         run: ansible-galaxy collection install -r requirements.yml
